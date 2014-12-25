@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<resultMap id="boardMapper" type="board">
+		<result column="board_no" property="boardNo" />
+	</resultMap>
+
+	<insert id="insertBoard" parameterType="com.nhnent.task.modle.dto.BoardDTO">
+		INSERT INTO ent_board (email, password, data, body) VALUES(#{email}, #{password}, #{data}, #{body})
+	</insert>
+	
+	<update id="updateBoard" parameterType="com.nhnent.task.modle.dto.BoardDTO">
+		UPDATE ent_board SET data = #{data}, body = #{body}
+	</update>
+	
+	<select id="selectBoardOne" parameterType="int" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<select id="selectBoardAll" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+	</select>
+	
+	<select id="selectPassWord" parameterType="com.nhnent.task.modle.dto.BoardDTO" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+		WHERE board_no = #{boardNo} AND password = #{passWord}
+	</select>
+</mapper>
