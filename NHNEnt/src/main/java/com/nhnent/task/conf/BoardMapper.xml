@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="board">
+
+	<resultMap id="BoardMapper" type="Board">
+  		<result property="boardNo" column="board_no" />
+  		<result property="email" column="email"/>
+  		<result property="password" column="password"/>
+  		<result property="createtime" column="createtime"/>
+  		<result property="attachment" column="attachment"/>
+  		<result property="body" column="body"/>
+	</resultMap>
+
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO ent_board (email, password, attachment, body) VALUES(#{email}, #{password}, #{attachment}, #{body})
+	</insert>
+	
+	<update id="updateBoard" parameterType="Board">
+		UPDATE ent_board SET data = #{attachment}, body = #{body}
+	</update>
+	
+	<select id="selectBoardByBoardNo" parameterType="int" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<select id="selectAllBoard" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+	</select>
+	
+	<select id="selectBoardByBoardNoAndPassWord" parameterType="Board" resultMap="BoardMapper">
+		SELECT * 
+		FROM ent_board
+		WHERE board_no = #{boardNo} AND password = #{passWord}
+	</select>
+</mapper>

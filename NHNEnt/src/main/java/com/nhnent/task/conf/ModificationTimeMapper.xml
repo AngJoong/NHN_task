@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="modificationTime">
+
+	<insert id="insertModificationTime" parameterType="int">
+		INSERT INTO modification_time (board_no) VALUES(#{boardNo})
+	</insert>
+	
+	<select id="selectModificationTime" parameterType="int">
+		SELECT MAX(modification_time)
+		FROM modification_time
+		WHERE board_no = #{boardNo}
+	</select>
+	
+</mapper>
