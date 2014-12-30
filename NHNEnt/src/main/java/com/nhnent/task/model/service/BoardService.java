@@ -6,32 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nhnent.task.model.dao.BoardDAO;
-import com.nhnent.task.model.dao.ModificationTimeDAO;
 import com.nhnent.task.model.dto.BoardDTO;
 
 @Component
 public class BoardService {
 
 	@Autowired
-	private BoardDAO boardDAO;
-
-	@Autowired
-	private ModificationTimeDAO modificationTime;
-	
-
-/*
-  	public String selectModificationTime(int boardNo) {
-		return modificationTime.selectModificationTime(boardNo);
-	}
-		
-*/
-	public void insertModificationTime(int boardNo) {
-		modificationTime.insertModificationTime(boardNo);
-//		if(!modificationTime.insertModificationTime(boardNo)){
-//			throw new Exception();
-//		}
-	}
-			
+	private BoardDAO boardDAO;		
 	
 	public void insertBoard(BoardDTO board) {
 		boardDAO.insertBoard(board);

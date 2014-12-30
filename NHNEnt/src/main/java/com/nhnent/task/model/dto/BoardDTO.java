@@ -1,7 +1,7 @@
 package com.nhnent.task.model.dto;
 
 public class BoardDTO {
-	private String boardNo;
+	private int boardNo;
 	private String email;
 	private String password;
 	private String createTime;
@@ -11,6 +11,13 @@ public class BoardDTO {
 	
 	public BoardDTO() {
 		super();
+	}
+	
+	public BoardDTO(int boardNo, String body, String attachment) {
+		super();
+		this.boardNo = boardNo;
+		this.body = body;
+		this.attachment = attachment;
 	}
 	
 	public BoardDTO(String email, String password, String body) {
@@ -28,10 +35,10 @@ public class BoardDTO {
 		this.body = body;
 	}
 	
-	public String getBoardNo() {
+	public int getBoardNo() {
 		return boardNo;
 	}
-	public void setBoardNo(String boardNo) {
+	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
 	public String getEmail() {

@@ -10,6 +10,7 @@
   		<result property="email" column="email"/>
   		<result property="password" column="password"/>
   		<result property="createTime" column="createtime"/>
+  		<result property="modificationTime" column="modification_time"/>
   		<result property="attachment" column="attachment"/>
   		<result property="body" column="body"/>
 	</resultMap>
@@ -19,7 +20,9 @@
 	</insert>
 	
 	<update id="updateBoard" parameterType="Board">
-		UPDATE ent_board SET data = #{attachment}, body = #{body}
+		UPDATE ent_board 
+		SET attachment = #{attachment}, body = #{body}, modification_time=SYSDATETIME
+		WHERE board_no = #{boardNo}
 	</update>
 	
 	<select id="selectBoardByBoardNo" parameterType="int" resultMap="BoardMapper">

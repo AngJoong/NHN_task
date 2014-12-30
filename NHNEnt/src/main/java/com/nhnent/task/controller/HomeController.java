@@ -1,14 +1,9 @@
 package com.nhnent.task.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +22,7 @@ public class HomeController {
 	
 	@Autowired
 	private BoardService boardService;
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+		
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -45,18 +38,23 @@ public class HomeController {
 
 	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)
 	public String insertBoard(@RequestParam("email") String email, @RequestParam("password") String password, 
-			/*@RequestParam("attachment") String attachment,*/ @RequestParam("body") String body) {
+			/*@RequestParam("attachment") String attachment,*/ @RequestParam("body") String body, Model model) {
+		
+			System.out.println(body);
 		
 			String regex = "\\w+@\\w+.\\w+";
 			BoardDTO newBoard = null;
 			Pattern pattern = null;
-			Matcher matcher = null;			
+			Matcher matcher = null;		
+			List<BoardDTO> BoardList = null;
 			
-			if(email == null ||email.trim() == "" 
+/*
+ 			if(email == null ||email.trim() == "" 
 				|| password == null || password.trim() == ""
 				|| body == null || body.trim() == ""){
 				return "board";
 			}
+*/
 			
 			pattern = Pattern.compile(regex);
 			matcher = pattern.matcher(email);
@@ -67,12 +65,30 @@ public class HomeController {
 			}
 			
 			newBoard = new BoardDTO(email, password, body);
-			
 			boardService.insertBoard(newBoard);
+			
+			BoardList = boardService.selectAllBoard();
+			model.addAttribute("boardList", BoardList);
 		
 		return "board";
 	}
 	
-	
+	@RequestMapping(value = "/updateBoard", method = RequestMethod.POST)
+	public String updateBoard(@RequestParam("boardno") int boardNo,
+			/*@RequestParam("attachment") String attachment,*/ @RequestParam("body") String body, Model model) {
+		
+			System.out.println(boardNo);
+			BoardDTO newBoard = null;
+			List<BoardDTO> BoardList = null;
+			
+			newBoard = new BoardDTO(boardNo, body, null);
+			System.out.println(newBoard.toString());
+			boardService.updateBoard(newBoard);
+			
+			BoardList = boardService.selectAllBoard();
+			model.addAttribute("boardList", BoardList);
+		
+		return "board";
+	}
 	
 }
