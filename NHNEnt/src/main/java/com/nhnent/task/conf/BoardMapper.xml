@@ -40,6 +40,6 @@
 	<select id="selectBoardByBoardNoAndPassWord" parameterType="Board" resultMap="BoardMapper">
 		SELECT * 
 		FROM ent_board
-		WHERE board_no = #{boardNo} AND password = #{passWord}
+		WHERE board_no = #{boardNo} AND password = #{password}
 	</select>
 </mapper>

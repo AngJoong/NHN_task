@@ -5,21 +5,27 @@ $( document ).ready(function() {
     	
     	var $boardFrame = $(this).closest(".board-frame");
     	var content;
+    	var password = prompt("password를 입력하세요");
     	
-//    	if($boardFrame.has(".body")){        	
         	var $body = $boardFrame.children(".body");
         	var boardNo = $boardFrame.data("no");    	
         	content = $body.text();
         	
-        	$boardFrame.children(".body").replaceWith("<textarea name='body'>"+content.trim()+"</textarea>");  	
-        	$boardFrame.children(".email").append("<input type='submit' class='result' value='완료'>");
-//    	}else{
+        	$.ajax({
+      		  url: "checkPassword",
+      		  type: "get",
+      		  data: { "boardNo": boardNo, "password": password },
+      		  dataType: "text"
+      		})
+      		  .done(function( data ) {
+      			console.log(data)
+      		    if (data == "true") {
+      	        	$boardFrame.children(".body").replaceWith("<textarea name='body'>"+content.trim()+"</textarea>");  	
+      	        	$boardFrame.children(".email").append("<input type='submit' class='result' value='완료'>");
+      		    }
+      		});
 //        	content = $boardFrame.children("textarea").val();
-//
-//        	console.log(content);
-//        	
 //        	$boardFrame.children("textarea").replaceWith("<div class='body'>"+content+"</textarea>");  	    		
-//    	}  	
     });
  
 });

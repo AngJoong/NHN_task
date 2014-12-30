@@ -7,9 +7,11 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nhnent.task.model.dto.BoardDTO;
 import com.nhnent.task.model.service.BoardService;
@@ -64,7 +66,7 @@ public class HomeController {
 				return "board";
 			}
 			
-			newBoard = new BoardDTO(email, password, body);
+			newBoard = new BoardDTO(email, password, null, body);
 			boardService.insertBoard(newBoard);
 			
 			BoardList = boardService.selectAllBoard();
@@ -82,13 +84,24 @@ public class HomeController {
 			List<BoardDTO> BoardList = null;
 			
 			newBoard = new BoardDTO(boardNo, body, null);
-			System.out.println(newBoard.toString());
 			boardService.updateBoard(newBoard);
 			
 			BoardList = boardService.selectAllBoard();
 			model.addAttribute("boardList", BoardList);
 		
 		return "board";
+	}
+
+	@RequestMapping(value = "/checkPassword", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkPassword(@RequestParam("boardNo") int boardNo, 
+			@RequestParam("password") String password, Model model) {
+
+			if(boardService.selectBoardByBoardNoAndPassWord(new BoardDTO(boardNo, password)) == null){
+				return "false";
+			}else{
+				return "true";
+			}
 	}
 	
 }

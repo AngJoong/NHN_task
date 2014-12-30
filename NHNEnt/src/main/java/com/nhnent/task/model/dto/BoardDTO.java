@@ -13,18 +13,17 @@ public class BoardDTO {
 		super();
 	}
 	
+	public BoardDTO(int boardNo, String password) {
+		super();
+		this.boardNo = boardNo;
+		this.password = password;
+	}
+	
 	public BoardDTO(int boardNo, String body, String attachment) {
 		super();
 		this.boardNo = boardNo;
 		this.body = body;
 		this.attachment = attachment;
-	}
-	
-	public BoardDTO(String email, String password, String body) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.body = body;
 	}
 	
 	public BoardDTO(String email, String password, String attachment, String body) {
@@ -34,7 +33,7 @@ public class BoardDTO {
 		this.attachment = attachment;
 		this.body = body;
 	}
-	
+
 	public int getBoardNo() {
 		return boardNo;
 	}

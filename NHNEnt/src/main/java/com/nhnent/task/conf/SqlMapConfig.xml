@@ -26,6 +26,5 @@
 	
   	<mappers>
     	<mapper resource="com/nhnent/task/conf/BoardMapper.xml"/>
-    	<mapper resource="com/nhnent/task/conf/ModificationTimeMapper.xml"/>
   	</mappers>
 </configuration>

@@ -7,9 +7,10 @@ html, body
   background-color: white;
   border: solid 1px grey;
   width: 60%;
-  height: 100%;
+  min-height: 100%;
+  height: auto%;
   margin: auto;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
 }
 		
 .board{
