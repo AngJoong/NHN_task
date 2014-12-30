@@ -16,7 +16,7 @@ public class ModificationTimeDAO {
 		DBUtil.closeSqlSession(flag, session);		
 		return flag;
 	}
-	
+	/*
 	public String selectModificationTime(int boardNo) {
 		SqlSession session = null;
 		String modificatinTime = null;
@@ -25,5 +25,6 @@ public class ModificationTimeDAO {
 		DBUtil.closeSqlSession(session);		
 		return modificatinTime;
 	}
+	*/
 }
 

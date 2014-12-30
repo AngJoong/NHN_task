@@ -2,7 +2,6 @@ package com.nhnent.task.model.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +19,12 @@ public class BoardService {
 	private ModificationTimeDAO modificationTime;
 	
 
-	public String selectModificationTime(int boardNo) {
+/*
+  	public String selectModificationTime(int boardNo) {
 		return modificationTime.selectModificationTime(boardNo);
 	}
 		
+*/
 	public void insertModificationTime(int boardNo) {
 		modificationTime.insertModificationTime(boardNo);
 //		if(!modificationTime.insertModificationTime(boardNo)){

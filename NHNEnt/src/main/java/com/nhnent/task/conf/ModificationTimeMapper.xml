@@ -8,11 +8,11 @@
 	<insert id="insertModificationTime" parameterType="int">
 		INSERT INTO modification_time (board_no) VALUES(#{boardNo})
 	</insert>
-	
+<!-- 	
 	<select id="selectModificationTime" parameterType="int">
 		SELECT MAX(modification_time)
 		FROM modification_time
 		WHERE board_no = #{boardNo}
 	</select>
-	
+	 -->
 </mapper>

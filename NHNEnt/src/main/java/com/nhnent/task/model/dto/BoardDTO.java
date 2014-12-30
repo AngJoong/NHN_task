@@ -5,6 +5,7 @@ public class BoardDTO {
 	private String email;
 	private String password;
 	private String createTime;
+	private String modificationTime;
 	private String attachment;
 	private String body;
 	
@@ -51,6 +52,12 @@ public class BoardDTO {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	public String getModificationTime() {
+		return modificationTime;
+	}
+	public void setModificationTime(String modificationTime) {
+		this.modificationTime = modificationTime;
+	}
 	public String getAttachment() {
 		return attachment;
 	}
@@ -63,14 +70,26 @@ public class BoardDTO {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("BoardDTO [boardNo=").append(boardNo).append(", email=")
-				.append(email).append(", password=").append(password)
-				.append(", createTime=").append(createTime).append(", attachment=")
-				.append(attachment).append(", body=").append(body).append("]");
+		builder.append("BoardDTO [boardNo=");
+		builder.append(boardNo);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", createTime=");
+		builder.append(createTime);
+		builder.append(", modificationTime=");
+		builder.append(modificationTime);
+		builder.append(", attachment=");
+		builder.append(attachment);
+		builder.append(", body=");
+		builder.append(body);
+		builder.append("]");
 		return builder.toString();
 	}
+	
 }

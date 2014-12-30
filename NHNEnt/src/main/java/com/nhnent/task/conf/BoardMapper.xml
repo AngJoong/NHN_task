@@ -9,7 +9,7 @@
   		<result property="boardNo" column="board_no" />
   		<result property="email" column="email"/>
   		<result property="password" column="password"/>
-  		<result property="createtime" column="createtime"/>
+  		<result property="createTime" column="createtime"/>
   		<result property="attachment" column="attachment"/>
   		<result property="body" column="body"/>
 	</resultMap>
@@ -31,6 +31,7 @@
 	<select id="selectAllBoard" resultMap="BoardMapper">
 		SELECT * 
 		FROM ent_board
+		ORDER BY createtime DESC;
 	</select>
 	
 	<select id="selectBoardByBoardNoAndPassWord" parameterType="Board" resultMap="BoardMapper">
