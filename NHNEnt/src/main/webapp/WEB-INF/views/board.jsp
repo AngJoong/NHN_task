@@ -23,11 +23,12 @@
 	    <c:if test="${not empty requestScope.boardList || fn:length(requestScope.boardList) > 0}">
 	    	<c:forEach var="board" items="${boardList}">
 	    		<div class="board">
-	    			<form action="updateBoard" method="POST">
+	    			<form name="update_form"  action="updateBoard" method="POST">
    			 			<div class="board-frame" data-no="${board.boardNo}">
 	  						<div class="email">
 	   							E-mail: ${board.email}
 	    						<input type="button" value="수정" class="modify">     
+	    						<input type='submit' class='result' value='완료'>
 	    						<input type="hidden" name="boardno" value="${board.boardNo}">
 	  						</div>
 						  	<div class="createDate">
@@ -39,6 +40,9 @@
 						  	<div class="body">
 						  		${board.body}
 						  	</div>
+						  	<textarea name='body'>
+						  	
+						  	</textarea>
 						</div>
 					</form>
 			    </div>

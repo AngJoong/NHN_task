@@ -85,7 +85,7 @@ public class HomeController {
 			
 			newBoard = new BoardDTO(boardNo, body, null);
 			boardService.updateBoard(newBoard);
-			
+						
 			BoardList = boardService.selectAllBoard();
 			model.addAttribute("boardList", BoardList);
 		
