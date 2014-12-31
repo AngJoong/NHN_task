@@ -1,31 +1,37 @@
-
 $( document ).ready(function() {
  
     $(".modify").click(function( event ) {
-    	
     	var $boardFrame = $(this).closest(".board-frame");
-    	var content;
-    	var password = prompt("password를 입력하세요");
+    	var $body = $boardFrame.children(".body");
+    	var $resultBt = $boardFrame.find(".result");
+    	var $textArea = $boardFrame.children("textarea");
     	
-        	var $body = $boardFrame.children(".body");
-        	var boardNo = $boardFrame.data("no");    	
-        	content = $body.text();
-        	
-        	$.ajax({
-      		  url: "checkPassword",
-      		  type: "get",
-      		  data: { "boardNo": boardNo, "password": password },
-      		  dataType: "text"
-      		})
-      		  .done(function( data ) {
-      			console.log(data)
-      		    if (data == "true") {
-      	        	$boardFrame.children(".body").replaceWith("<textarea name='body'>"+content.trim()+"</textarea>");  	
-      	        	$boardFrame.children(".email").append("<input type='submit' class='result' value='완료'>");
-      		    }
-      		});
-//        	content = $boardFrame.children("textarea").val();
-//        	$boardFrame.children("textarea").replaceWith("<div class='body'>"+content+"</textarea>");  	    		
+	   	 if($body.css("display") != "none"){
+	     	var password = prompt("password를 입력하세요");
+	    	var content = $body.text().trim();
+	    	var boardNo = $boardFrame.data("no");    	
+
+	   		$.ajax({
+	    		  url: "checkPassword",
+	    		  type: "get",
+	    		  data: { "boardNo": boardNo, "password": password },
+	    		  dataType: "text"
+	    		})
+	    		  .done(function( data ) {
+	    		    if (data == "true") {
+	    		    	$textArea.text(content);
+	    		    	$body.toggle();
+	    		    	$resultBt.toggle();
+	    		    	$textArea.toggle();
+	    		    }else{
+	    		    	alert("password가 틀렸습니다.");
+	    		    }
+	    		});
+	   	 }else{
+	    	$body.toggle();
+	    	$resultBt.toggle();
+	    	$textArea.toggle(); 
+	   	 }    		
     });
  
 });
@@ -36,11 +42,10 @@ function chkEmail(){
 	  var regExp = /\w+@\w+\.\w+/;
     			  
 	  if(regExp.test(email)){
-	    board_form.action = "/task/insertBoard";
+	    board_form.action = "insertBoard";
 	    return true;
 	  }else{
 	    alert("Email형식이 아닙니다.");
 			    return false;
 	  }
 } 
-

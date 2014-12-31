@@ -36,7 +36,7 @@ textarea{
 .board-frame textarea{
   height: 40px;
   overflow-x: hidden;
-  
+  display: none;
 }
 
 input[value="등록"], input[value="수정"]{
@@ -66,4 +66,7 @@ input[value="수정"]{
     overflow-y:auto;
 }
 
+.result{
+	display: none;
+}
 		
